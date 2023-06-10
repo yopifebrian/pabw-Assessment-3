@@ -1,0 +1,94 @@
+{
+    "accounts": [
+        {
+            "id": "001",
+            "username": "john_doe",
+            "email": "johndoe@example.com",
+            "password": "johndoe123"
+        },
+        {
+            "id": "002",
+            "username": "jane_smith",
+            "email": "janesmith@example.com",
+            "password": "janesmith456"
+        }
+    ],
+    "projects": [
+        {
+            "id": "001",
+            "name": "Project A",
+            "description": "Developing a new mobile app",
+            "manager": "john_doe",
+            "status": "In Progress"
+        },
+        {
+            "id": "002",
+            "name": "Project B",
+            "description": "Website redesign for XYZ Company",
+            "manager": "jane_smith",
+            "status": "Completed"
+        }
+    ],
+    "project_management": {
+        "001": {
+            "tasks": [
+                {
+                    "id": "001",
+                    "name": "Design UI",
+                    "assigned_to": "john_doe",
+                    "status": "In Progress"
+                },
+                {
+                    "id": "002",
+                    "name": "Develop backend",
+                    "assigned_to": "john_doe",
+                    "status": "Completed"
+                }
+            ],
+            "milestones": [
+                {
+                    "id": "001",
+                    "name": "UI Design Approval",
+                    "due_date": "2023-03-31",
+                    "status": "Pending"
+                },
+                {
+                    "id": "002",
+                    "name": "Backend Development Complete",
+                    "due_date": "2023-04-15",
+                    "status": "In Progress"
+                }
+            ]
+        },
+        "002": {
+            "tasks": [
+                {
+                    "id": "001",
+                    "name": "Gather requirements",
+                    "assigned_to": "jane_smith",
+                    "status": "Completed"
+                },
+                {
+                    "id": "002",
+                    "name": "Design wireframes",
+                    "assigned_to": "jane_smith",
+                    "status": "Completed"
+                }
+            ],
+            "milestones": [
+                {
+                    "id": "001",
+                    "name": "Requirements Gathering Complete",
+                    "due_date": "2023-02-28",
+                    "status": "Completed"
+                },
+                {
+                    "id": "002",
+                    "name": "Wireframes Design Approval",
+                    "due_date": "2023-03-15",
+                    "status": "In Progress"
+                }
+            ]
+        }
+    }
+}
