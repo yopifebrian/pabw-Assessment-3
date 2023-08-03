@@ -1,0 +1,1069 @@
+Submitted to Expert Systems
+
+Expert Systems «|
+
+Forecasting hotel cancellations through Machine Learning
+
+Journal: | Expert Systems
+
+Manuscript ID | EXSY-Apr-23-902
+
+Wiley - Manuscript type: | Original Article
+
+Date Submitted by the
+
+Author: | 14-Apr-2023
+
+Complete List of Authors: | Herrera, Anita; Universidad de Burgos Escuela Politecnica Superior
+Arroyo, Angel; Universidad de Burgos Escuela Politecnica Superior
+Jimenez, Alfredo; Kedge Business School - Campus Bordeaux
+Herrero, Alvaro; Universidad de Burgos Escuela Politecnica Superior
+
+Machine Learning, supervised learning, classification methods, neural
+
+Geprrge: networks, <i>k</i>-means, tourism industry, hotel booking
+
+Keywords:
+
+SCHOLARONE™
+Manuscripts
+
+Page 10f 17
+
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+Forecasting hotel cancellations through Machine
+Learning
+
+Anita Herrera! [0000-0002-2655-412X] Angel Atroyo![0000-0002-3561-6257], Alfredo Jiménez2[0000-
+0001-7811-5113] gd Alvaro Herrero ![0000-0002-2444-5384]
+
+I Grupo de Inteligencia Computacional Aplicada (GICAP), Departamento de Digitalizacion,
+Escuela Politécnica Superior, Universidad de Burgos, Av.Cantabria s/n, 09006, Burgos, Spain,
+ahv1002@alu.ubu.es, {aarroyop, ahcosio}@ubu.es
+2KEDGE Business School, 680 cours de la Liberation, Talence (Bordeaux) France.
+alfredo jimenez@kedgebs.com
+
+Abstract. The analysis of tourist accommodation bookings provides valid
+information for the management of these establishments. The objective of this
+work 1s to analyze the performance of different Machine Learning techniques for
+the prediction of booking cancellations, as well as to analyze possible patterns in
+the study data. For this purpose, the following supervised learning methods are
+used: Multilayer Perceptron Neural Network, Radial Basis Function Neural
+Network, Decision Tree, Random Forest, AdaBoost and XgBoost, analyzing the
+performance of these techniques. The dataset used corresponds to the bookings
+of a resort hotel and a city hotel located in Portugal. As a result, the study
+compares the classification methods applied and identifies those with better
+performance, proving that Machine Learning techniques generate reliable
+forecasts for the management of the tourism industry.
+
+Keywords: Machine Learning, supervised learning, classification methods,
+neural networks, k-means, tourism industry, hotel booking.
+
+1 Introduction
+
+The tourism industry is on its way to pre-pandemic levels [1], a process that includes
+innovation, in a highly competitive industry that must adapt to the expectations and
+requirements of tourists. According to the World Tourism Organization, the tourism
+sector had shown high growth in the years before the pandemic declaration. In 2019,
+1.5 billion international tourist arrivals were recorded in the world, versus 400 million
+in 2020. In 2022, more than 900 million tourists made international trips, which is
+equivalent to 63% of pre-pandemic levels [2].
+
+The tourism industry's efforts for its revival have included creating strategies based
+on intelligent information. In this sense, Machine Learning (ML) models transform data
+into useful information for tourism companies, identifying customer demand, industry
+trends and future expectations. Techniques such as clustering, classification, and text
+mining have been used to analyze online tourism records to understand the new needs
+generated during the coronavirus pandemic [3]. ML models determine areas or tourism
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+services to be improved, new demands and, in general, valid information for tourism
+management [4].
+
+Managers or decision-makers can benefit from reliable forecasts generated from ML
+models that take into account the specific characteristics of the study area and
+management data sets [5]. A forecast of tourism demand provides information for the
+design and implementation of policies that provide a competitive advantage, reduce the
+uncertainty associated between supply and demand [6], and is an important element for
+government planning and management [7] [8] and decision-makers in the tourism
+sector.
+
+The tourism management of different establishments is reinforced with tourism
+demand forecasting models. Supervised learning methods are analyzed to identify the
+best-performing model according to the tourist service to be forecast [9]. Artificial
+neural networks (ANN) examine large amounts of data to create advanced forecasts
+that significantly improve management in the travel industry [10]. Likewise, ANN is
+used in hotel occupancy rate forecasting [11], Radial Basis Function (RBF) Neural
+Networks analyze online hotel bookings, forecasts that provide valid information for
+decision-making [12]. Other hybrid models formed with Backward Programming
+Neural Networks, General Regression Neural Networks, Least Squares Support Vector
+Regression (LSSVR), Random Forest (RF), Gaussian Process Regression (GPR), etc.,
+reflect the validity of these techniques as valid mechanisms in hotel occupancy rate
+forecasting [13]. Forecasts contribute to the creation of better booking cancellation
+policies, an important aspect due to the economic losses caused by an unsold tourist
+service [14].
+
+In summary, ML models are important for information generation, which is the basis
+of successful tourism management. In this paper we analyze supervised learning
+methods for hotel reservation prediction, using a reservation dataset from an urban hotel
+and a resort hotel, located in Portugal [15].
+
+The continuation of this paper includes Section 2 called Techniques Applied, which
+describes the supervised learning algorithms for classification: Multilayer Perceptron
+Neural Network, Radial Basis Function Neural Network, Decision Tree Classifier,
+Random Forest Classifier, AdaBoost Classifier, and XgBoost Classifier. The confusion
+matrix and the performance of the methods are analyzed. The unsupervised learning
+method k-means is used to find possible patterns in the dataset not labeled, defining the
+most appropriate value of k according to the Silhouette code, Davies Building Index,
+and Elbow Method. Section 3 describes a Case Study with reservation data from two
+hotels in Portugal. Section 4 corresponds to Experiments and Results. Finally, Section
+5 includes the Conclusions of the present work.
+
+2 Techniques Applied
+
+ML is the field of study that gives computers the ability to learn without being explicitly
+programmed [16]. ML is an area focused on the use of data and algorithms to simulate
+human learning. Currently, several industries use ML algorithms to make
+classifications [17], predictions [18] or discover strategic information [19].
+
+Page 2 of 17
+Page 3 of 17
+
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+Supervised learning is characterized by the use of labeled datasets that are used to
+train algorithms that classify data, or accurately predict outcomes. The goal of
+supervised learning is to predict or classify a specific result of interest [20].
+
+Unsupervised learning uses algorithms for the treatment of unlabeled data. The goal
+of unsupervised learning is to analyze data to identify patterns, clusters, or relationships
+between features in the input data. In addition, unsupervised learning algorithms are
+suitable for creating labels in the data [21] and making predictions.
+
+The algorithms used in the case study of the present work are described below:
+
+2.1 Artificial Neural Networks (ANN)
+
+Artificial intelligence tools whose functionality is based on biological neurons. ANNs
+consist of an input layer, one or more hidden layers and an output layer. Training data
+is used to tune the model, which is then used to solve various problems accurately [22].
+
+Multilayer Perceptron (MLP)
+
+Multilayer Perceptron (MLP) is an artificial neural network, consisting of multiple
+hidden layers, which is characterized by the ability to learn more complicated functions.
+The MLP Neural Network generates a predictive model for one or more dependent
+variables based on the predictor variables. The input data, called features, correspond
+to the study variables [23].
+
+The model multiplies each feature by its weight, then the weighted features are
+summed to obtain the scalar product, and the latter is added to the bias that feeds the
+activation function as the output of the neuron. MLP can approximate smooth and
+measurable functions by selecting the appropriate connection weights and transfer
+functions [24].
+
+MLP network operation is expressed by
+
+q q n
+Zy = why of = ovis [Br o)- ok
+=1
+
+j=1 j=1
+Where:
+
+x; = input MLP, y; = hidden layer outputs, Z, = final layer results, w; = hidden layer
+weights, 6; = hidden layer thresholds, Wi; = output layer weights, 8% = output layer
+thresholds.
+
+Radial Basis Function Neural Networks (RBF Neural Networks)
+
+Three-layer neural network, an input layer receives the data and transmits it to the next
+
+layer without any processing, a hidden layer that performs the computations, and an
+
+output layer that performs prediction tasks such as classification or regression [25].
+The operation of an RBF Neural Network is expressed by:
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+2i(x) = p((x— c)".R Wx — ¢))
+Where:
+
+@ = radial basis function used, ¢; = set of radial basis function centers, (x — ce)’ R71
+(x — c¢;)= distance from input x to center c.
+
+Neurons in the hidden layer are activated by a radial function, in a different region
+of the input pattern space, there are different types of radial basis functions, but the
+most commonly used is the Gaussian function. The output layer neurons perform a
+linear combination of the activations of the hidden neurons. For the Gaussian function
+and the Euclidean metric, the output of the network is given by:
+
+r
+
+C
+
+llx— cdl?
+
+F(x) = w, + Yor. orn (=
+i=1
+
+Where:
+
+C = number of radial basis functions used, ¢; = synaptic weights, ||.|| = standard
+Euclidean, r = radius of radial function, @ = weights.
+
+2.2 Classification Algorithms
+
+Classification is a supervised learning algorithm that aims to make predictions about
+the classifications of input data. A classification algorithm learns from training data and
+then evaluates the test data, and finally uses it to make predictions on new data [26].
+
+Decision Tree Classifier
+
+A decision tree is a supervised algorithm that divides the data into homogeneous groups
+according to the most significant input variable. This algorithm presents a hierarchical
+tree structure, consisting of a root node, branches, internal nodes, and leaf nodes. The
+classification starts at the root node of the tree and progresses recursively up to the leaf
+nodes. The leaf nodes represent all possible results within the dataset [27].
+
+Random Forest Classifier
+
+The Random Forest Classifier is based on decision trees, where each tree is trained with
+a subset of the dataset and gives a result, then the results of the decision trees are
+combined to obtain a more reliable result. Random Forest is essentially a collection of
+Decision Trees. The accuracy of Random Forest Classifier has generated the attention
+of researchers [28].
+
+Page 4 of 17
+Page 50f 17
+
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+AdaBoost Classifier (Adaptive Boosting)
+
+The AdaBoost algorithm trains single classifiers iteratively, cascading multiple
+classifiers so that each classifier focuses on data that were misclassified by the previous
+classifier. The algorithm achieves better results and more accurate classification [29].
+
+XgBoost Classifier
+
+XgBoost is the abbreviation for eXtreme Gradient Boosting, a supervised machine
+learning method for classification and regression based on Decision Trees and an
+efficient improvement over Random Forest and Gradient Boosting methods. XgBoost
+combines trees sequentially to learn from the result of the previous trees and correct the
+error until it can no longer be corrected. XgBoost is an adaptation of Gradient boosting
+that stands out for its efficiency and speed [30].
+
+2.3 Clustering
+
+Clustering is an unsupervised learning technique whose objective is to find
+homogeneous subgroups in the data set. The definition of the subgroups takes into
+account the distances between observations so that the elements of a cluster are more
+similar than the elements of other clusters [31].
+
+K-means
+
+K-means is an unsupervised learning algorithm that attempts to cluster unlabeled data
+into k well-defined clusters. The k-means algorithm requires setting the number of
+clusters and will assign each data to a cluster based on its characteristics. The goal of
+k-means is to define the centroid and members of each cluster by minimizing the
+distance from each point to the cluster centroid, a process that is repeated until the
+centroid does not change significantly [32].
+
+The sum of the distance of each point to the centroid of its cluster is given by:
+
+p(X, C)
+xe Gi Nn
+
+k
+SSE=Y,_%
+
+Where p is the proximity function, & is the number of groups, Cj is the number of
+centroids and # is the number of rows.
+
+231 Cluster Validation Metrics
+
+Metrics that assess the quality of clustering by examining how separate the clusters are
+and how compact they are, i.e., looking for clusters with a high similarity between their
+components and low similarity between clusters [33].
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+Silhouette Index
+
+Silhouette is a metric that validates the coherence of data clusters by analyzing the
+distance between points in each cluster (cohesion) and the distance to other clusters
+(separation). The Silhouette index can take values in the interval [-1, 1] and the optimal
+number of clusters is given by the highest value of the Silhouette index, which is given
+by [34]:
+
+i _ 1 b(X, Co) —a(X, Cr)
+Sie) = N % max {a(X;, C1), b(X,Ci)}
+
+Cre CXiE Cy
+
+Where:
+1
+a6) =o, del, X)
+
+Xe Cy
+
+1
+mingeere D de(X;, 0)
+
+Xed
+
+Dataset X = {X}, X, ... Xy} of Nobjects, Cj - centroid of cluster, The partition X into K
+groups: C= {c;, ¢; ..., i}, do(X;, X) — Euclidean distance.
+
+Davies Building Index
+
+The Davies Building index evaluates clustering algorithms in terms of the minimum
+distance between the points of a cluster and its centroid, and the distance between the
+centroids. The appropriate number of clusters, according to the David Boulding index,
+corresponds to the smallest value [35]. The Davies Building index is defined as:
+
+F (Cu) + =]
+
+1
+DB(C) = x D maxc, ec\ ¢ ACEO
+
+Cr ec
+Where:
+
+sci) = Y, dx, i)
+
+Xe Cy
+
+Dataset X = {X, X, ... Xy} of N objects, C;, - centroid of cluster, the partition X into K
+groups: C= {c;, ¢; ..., ¢i}, do(X;, X) — Euclidean distance.
+
+Elbow Method
+
+The elbow method evaluates the appropriate number of clusters (k) by calculating the
+sum of the squared distances from each cluster object to its centroid (WCSS). The graph
+of WCSS-versus-k, changes drastically at one point, creating the shape of an elbow.
+
+Page 6 of 17
+Page 7 of 17
+
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+The optimal value of the cluster corresponds to the point in the graph from which it
+shifts parallel to the x-axis [36]. WCSS is given by:
+
+Ne
+WSS = D D d (x, 7c)?
+
+i=1xe(;
+
+Where: C; = cluster, N, = # clusters, xc= cluster centroid.
+
+3 Case Study
+
+This paper presents a set of ML methods to analyze the booking behavior of hotel
+reservations. For this purpose, a dataset of bookings from a resort hotel located in the
+tourist region of Algarve, and a hotel in the city of Lisbon (Portugal), is used the dataset
+includes variables related to the bookings that were due to arrive between July 1, 2015,
+and August 31, 2017. The analyzed dataset has a total of 119,210 records [15].
+The variables considered for analysis are:
+1. hotel: Categorical variable that takes the value of 1 for the city hotel, and O for the
+resort hotel.
+2. is_canceled: Categorical variable that identifies canceled bookings as 1 and non-
+canceled bookings as 0.
+3. lead time: Numerical variable that represents the number of days between the
+booking date and the arrival date.
+4. arrival date month: Numerical variable representing the month of arrival.
+5. Arrival date year: Numerical variable representing the year of arrival.
+6. arrival date week number: Numerical variable representing the week number of
+the arrival date.
+7. arrival date day of month: Numerical variable representing the day of the month
+of the arrival date.
+8. stays in weekend nights: Numeric variable with the number of weekend nights
+the guest has stayed or booked.
+9. stays in week nights: Numerical variable representing the number of nights
+between Monday to Friday, the guest stayed or booked.
+10. adults: Numeric variable of the number of adults in the booking.
+11. children: Numeric variable of the number of children in the booking.
+12. babies: Numeric variable of the number of babies in the booking.
+13. meal: Categorical variable representing the type of food booked.
+- 0: BB — Bed & Breakfast;
+- 1: FB — Full board — breakfast, lunch, and dinner;
+- 2: HB — Half board — breakfast and one other meal — usually dinner;
+- 3: SC — Self-catering — no meals are included,
+- 4: Undefined.
+14. market segment: Categorical variable representing market segment designation:
+NOU WN =
+
+Xe]
+
+15.
+
+16.
+
+17.
+
+18.
+
+19.
+20.
+
+21.
+
+22.
+
+23.
+
+24.
+
+25.
+
+26.
+
+Submitted to Expert Systems
+
+: Direct;
+
+: Corporate;
+
+: Online TA;
+
+: Offline Travel Agents/Tour Operators;
+
+: Complementary;
+
+: Groups;
+
+: Undefined;
+
+- 7: Aviation.
+
+distribution_channel: Categorical variable representing the booking distribution
+
+channel:
+
+- 0: TA — Travel Agents;
+
+- 1: TO — Tour Operators.
+
+is repeated guest: Categorical variable with 1 if the booking name is of a repeated
+
+guest and 0 if it is not repeated.
+
+previous cancellations: Numerical variable representing the number of previous
+
+bookings canceled by the client before the current booking.
+
+previous bookings not canceled: Numerical variable representing the number of
+
+previous bookings not canceled by the client before the current booking.
+
+reserved room type: Categorical variable of room type code booked.
+
+deposit type: Categorical variable indicating whether the client deposited to
+
+guarantee the booking.
+
+- 0: No Deposit — no deposit was made;
+
+- 1: Refundable — a deposit was made with a value under the total cost of the stay;
+
+- 2: Non Refund — a deposit was made in the value of the total stay cost.
+
+agent: Numeric variable that corresponds to the ID of the travel agency that made
+
+the booking.
+
+company: Numeric variable that corresponds to the ID of the company/entity that
+
+made the booking or is responsible for the payment of the booking.
+
+customer type: Categorical variable of booking type.
+
+- 0: Transcient — the booking is not part of a group or contract, and is not
+associated with another transient booking;
+
+- 1: Contract — the booking is associated with an award or other type of contract;
+
+- 2: Transient party — the booking is transient, but is associated with at least one
+other transient booking;
+
+- 3: Group — the booking is associated with a group.
+
+adr: Numerical variable that corresponds to Average Daily Rate, calculated by
+
+dividing the sum of all lodging transactions by the total number of staying nights.
+
+required car parking spaces: Numerical variable related to the number of car
+
+parking spaces required by the customer.
+
+total of special requests: Numerical variable that corresponds to a number of
+
+special requests made by the customer.
+
+!
+DUE WN —O
+
+The case study includes the 26 variables described above. In the preprocessing, it is
+identified that some categorical variables contain the value NULL as a category, which
+
+Page 8 of 17
+Page 9 of 17
+
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+does not mean the absence of data, an aspect to consider for the coding of categorical
+
+variables. The data preprocessing is summarized below:
+
+eo Filtering: the dataset is filtered to identify null values of categorical variables
+(assigning a category to null values). The rows in which null values were found for
+the fields adults, children and babies, at the same time, have been eliminated.
+
+In addition, the correlation between the variables is verified and the variables are
+normalized.
+
+e Training and testing: the models are evaluated with the training data set (70%
+corresponds to 83,447 records) and the validation data set (30% corresponds to
+35,763 records) after each update during training. Cross-validation (CV) technique
+evaluates the capabilities of models [37].
+
+4 Experiments and Results
+The work begins with the application of the Multilayer Perceptron Neural Network
+method on the dataset, which was previously preprocessed. The backpropagation
+
+algorithm is used to train the MLP Neural Network.
+Fig. 1 shows the loss curve of the MLLP Neural Network model.
+
+0.8
+
+0.2
+
+0 25 50 75 100 125 150 175 200
+Iterations
+
+Fig.1 Loss Curve — Multiple Perceptron Neural Network
+
+Fig. 1 presents the behavior of the MLLP model during training, and visualizes the loss
+of information, calculated from the training data set. The x-axis corresponds to the
+iterations and the y-axis to the losses. Fig. 1 shows that with each iteration, the losses
+decrease, after iteration 125 the model does not improve much anymore. This paper
+discusses the classification MLP Neural Network, which learns from training data to
+model the relationships between input and output data and predict which hotel bookings
+will and will not be canceled.
+
+Fig. 2 corresponds to the learning curve of the Radial Basis Function neural network
+model.
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+10
+
+0 200 400 600 800 1000
+Iterations
+
+Fig.2 Loss Curve - Radial Basis Function Neural Network
+
+Fig. 2 presents the behavior of the RBF Neural Network model, during training, The
+RBF Neural Network is designed with neurons in the hidden layer, activated by
+nonlinear radial functions, and in the output layer by linear functions. The x-axis
+corresponds to the iterations and the y-axis to the losses. The radial basis network
+developed in this case study is a classification network, whose supervised phase
+training adjusts the weights and thresholds of the output layer to obtain the best possible
+forecast of hotel booking cancellations.
+
+The confusion matrix of the Decision Tree Classifier algorithm is presented below
+to visualize the performance of the algorithm. The columns of the confusion matrix
+represent the number of predictions of each class, while the rows represent the instances
+in the actual class.
+
+Table 1. Confusion Matrix — Decision Tree Classifier
+
+Prediction
+Positive Negative
+5 Z Positive 21,581 957
+= Negative 972 12,253
+
+According to the confusion matrix in Table 1:
+21,581 reservations were booked and the model predicted that they were booked.
+12,253 reservations were canceled and the model predicted that they would be canceled.
+972 reservations were booked and the model predicted they would be canceled.
+957 reservations were canceled and the model predicted that they would not be canceled
+In summary, the Decision Tree model correctly predicted 95.75% of non-canceled
+reservations, and 92.65% of canceled reservations.
+Table 2 shows the confusion matrix of the Random Forest method:
+
+Page 10 of 17
+Page 11 of 17
+
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+11
+
+Table 2. Confusion Matrix — Random Forest
+
+Prediction
+Positive Negative
+5 Z Positive 22,335 203
+= Negative 1496 11,729
+
+The Random Forest model correctly predicted 99.10% of non-canceled bookings and
+88.69% of canceled bookings.
+Table 3 presents the confusion matrix of the AdaBoost Classifier method:
+
+Table 3. Confusion Matrix — AdaBoost Classifier
+
+Prediction
+Positive Negative
+£4 Positive 21,598 940
+= Negative 965 12,260
+
+The AdaBoost model correctly predicted 95.83% of non-canceled bookings and
+92.70% of canceled bookings.
+The confusion matrix of the XgBoost Classifier is presented in Table 4:
+
+Table 4. Confusion Matrix — XgBoost Classifier
+
+Prediction
+Positive Negative
+£4 Positive 22,526 12
+= Negative 596 12,629
+
+The XgBoost model correctly predicted 99.95% of non-canceled bookings and 95.49%
+of canceled bookings.
+Table 5 summarizes the evaluation of the above models:
+
+Table 5. Summary of model’s evaluation
+Correct prediction
+
+Model Non-canceled Canceled
+Decision Tree 95.75% 92.65%
+Random Forest 99.10% 88.69%
+AdaBoost 95.83% 92.70%
+XgBoost 99.95% 95.49%
+
+Table 5 details the correct forecast of the supervised learning models for each category
+(non-canceled and canceled), analyzed in this document. The XgBoost model shows
+the highest percentage, i.e. provides the highest accuracy for this prediction task. The
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems Page 12 of 17
+
+12
+
+application of this model would improve the prediction of cancellations, providing
+important information for decision-making.
+Next, Table 6 shows the overall accuracy of the supervised learning models
+analyzed in this work.
+Table 6. Accuracy Score
+
+METHOD ACCURACY SCORE
+Decision Tree Classifier 0.9460615720157705
+Random Forest Classifier 0.9524927998210441
+Ada Boost Classifier 0.9467326566563208
+XgBoost Classifier 0.9829991891060593
+
+Table 6 lists the accuracy score of the supervised learning models analyzed in this
+paper. The XgBoost Classifier model presents the highest overall accuracy.
+
+It is also interesting to analyze the reservation dataset with an unsupervised learning
+method to identify possible patterns. By applying the k-means method it is possible to
+visually identify the appropriate number of clusters and, on the other hand, it is also
+possible to determine the optimal number of clusters, with methods such as the
+Silhouette Coefficient, Davies Building Index, Elbow Method, etc. The result of the
+application of the methods to determine the value of k in the study dataset is presented
+below.
+
+0.40
+
+0.35
+
+Sil Score
+-
+8
+Davies-Boulding Index
+
+0.25
+
+29 25 30 25 40 85 5 2.0 25 3.0 35 40 45 5.0
+Clusters Clusters
+
+Fig.3 (a) Silhouette Coefficient Fig.3 (b) Davies-Bouldin Index
+
+2 4 6 8 10
+Clusters
+
+Fig.3 (c) Elbow Method
+Page 13 of 17
+
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+13
+
+In Fig. 3(a) the Max Silhouette Score is reached at k = 2, so the optimal number of
+clusters is 2. The Davies-Boulding index (Fig. 3(b)) takes the lowest value at k=2.
+Therefore, the optimal number of clusters according to the Davies-Boulding index is 2.
+Finally, the optimal value of clusters according to the Elbow Method is 2 (Fig. 3(c)).
+
+The result of k-means (based on Euclidean distance) applied to the booking dataset
+is shown in Fig. 4.
+
+-075 -050 =-0.25 000 025 050 075 100
+
+Fig. 4 k-means with k=2
+
+Fig. 4 presents two defined and separate clusters. The blue cluster is related to urban
+hotel bookings and includes the largest number of items, 79,163 bookings, with higher
+dispersion, implying lower similarity. The mean of the components is (-0.35; -0.06).
+The green group is related to resort hotel bookings, with the lowest number of elements,
+40,047 bookings, with the lowest dispersion, implying the highest similarity. The mean
+of the components is (0.68; 0.12).
+
+The definition of clusters could be related to the difference between the
+characteristics of city hotel bookings and the characteristics of resort hotel bookings.
+This type of analysis is important in decision-making and valid for generating
+strategies. For example, this information could be useful for the creation of a
+cancellation policy according to the specific characteristics of the tourism business. An
+appropriate cancellation policy should attract the tourist's interest in booking the
+service, offer resale options for a canceled service and avoid economic losses.
+
+5 Conclusions
+
+This paper attempts to review the efficiency of classification-oriented supervised and
+unsupervised learning models, demonstrating the importance of the MLL methods in the
+processing of hotel bookings, due to the high accuracy they achieve. Therefore, the ML
+methods represent an opportunity to generate information for the creation of
+cancellation policies that attract more tourists and strengthen the management of the
+tourism sector.
+NOU WN =
+
+Xe]
+
+Submitted to Expert Systems
+
+14
+
+The models are evaluated with the training data set (corresponding to 70% of the
+records) and the validation data set (corresponding to 30% of the records). To properly
+evaluate the models’ capabilities, the cross-validation technique is used.
+
+When comparing the accuracy of the supervised learning methods described in this
+paper, it is determined that the XgBoost Classifier has the best Accuracy Score. Of
+22,538 non-canceled bookings, 22,526 were correctly predicted (99.95% correct and
+0.05% incorrect). Of 13,225 canceled bookings, 12,629 were correctly predicted
+(95.49% correct and 4.51% incorrect). The overall accuracy of the model is 98%, which
+confirms the improvement of XgBoost over other methods, as indicated by the
+literature.
+
+The methods based on Decision Trees enhance predictive models with high accuracy,
+stability, and ease of interpretation. The supervised learning models analyzed in this
+study are more than 98% accurate, generating reliable and useful forecasts to support
+decision-making.
+
+RBF Neural Network is one of the rare but extremely fast, effective, and intuitive
+machine learning algorithms.
+
+The k-means method applied to the reservation data set (excluding the label), presents
+two compact and well-defined clusters, as shown in Fig. 4. The members of each cluster
+are fairly close to the other members of the same cluster, and the clusters are separated
+from each other. The clusters could be related to the characteristics of the reservations,
+depending on the type of hotel.
+
+The blue cluster corresponds to city hotel bookings, with a higher dispersion, which
+implies a lower similarity. The mean of the components is (-0.35; -0.06). The green
+group corresponds to resort hotel bookings, with the lowest dispersion (compared to
+the other cluster), implying the highest similarity. The mean of the components is (0.68;
+0.12).
+
+Forecasting is a relevant tool to reduce uncertainty in decision-making in tourism
+management, which is why Machine Learning methods have participated in the
+innovation and growth of this industry. This paper aims to highlight the high
+performance of the Machine Learning methods analyzed, which provide valid
+information for decision-making.
+
+References
+
+[1] UNWTO. (2023). Tourism set to return to pre-pandemic levels in some
+regions in 2023 [Online]. Available:
+https://www.unwto.org/taxonomy/term/347.
+
+[2] UNWTO. (2023). Impact assessment of the covid-19 outbreak on
+international tourism [Online]. Available: https://www.unwto.org/impact-
+assessment-of-the-covid-19-outbreak-on-international-tourism.
+
+[3] M. Zibarzani ef al., "Customer satisfaction with Restaurants Service Quality
+during COVID-19 outbreak: A two-stage methodology," Technology in
+Society, vol. 70, p. 101977, 2022/08/01/ 2022.
+
+[4] A. Alsayat, "Customer decision-making analysis based on big social data
+using machine learning: a case study of hotels in Mecca," Neural Computing
+and Applications, vol. 35, no. 6, pp. 4701-4722, 2023/02/01 2023.
+
+Page 14 of 17
+Page 15 of 17
+
+NOU WN =
+
+Xe]
+
+[3]
+
+[6]
+
+[7]
+
+[8]
+
+[9
+
+[10]
+
+[11]
+
+[12]
+
+[13]
+
+[14]
+
+[15]
+
+[16]
+
+[17]
+
+Submitted to Expert Systems
+
+15
+
+A. M. Fiori and I. Foroni, "Reservation Forecasting Models for Hospitality
+SMEs with a View to Enhance Their Economic Sustainability," (in English),
+Sustainability, Article vol. 11, no. 5, p. 24, Mar 2019, Art no. 1274.
+
+A. Ampountolas, "Modeling and Forecasting Daily Hotel Demand: A
+Comparison Based on SARIMAX, Neural Networks, and GARCH Models,"
+Forecasting, vol. 3, no. 3, pp. 580-595, 2021.
+
+S.L.Sun, M.C. Li, S. Y. Wang, and C. Y. Zhang, "Multi-step ahead tourism
+demand forecasting: The perspective of the learning using privileged
+information paradigm," (in English), Expert Systems with Applications,
+Article vol. 210, p. 12, Dec 2022, Art no. 118502.
+
+N. Yu and J. Chen, "Design of Machine Learning Algorithm for Tourism
+Demand Prediction," (in eng), Computational and mathematical methods in
+medicine, vol. 2022, p. 6352381, 2022.
+
+R. Khorsand, M. Rafiee, and V. Kayvanfar, "Insights into TripAdvisor's online
+reviews: The case of Tehran's hotels," (in English), Tourism Management
+Perspectives, Review vol. 34, p. 12, Apr 2020, Art no. 100673.
+
+M. Mamula, R. Folgieri, and K. Duvnjak, "Some considerations about
+Artificial Neural Networks in Hotel Industry: State of the art and future
+developments," in 5th International Scientific Conference on Tourism in
+Southern and Eastern Europe (ToSEE 2019), Opatija, CROATIA, 2019, vol.
+5, OPATIJA: Univ Rijeka, Faculty Tourism & Hospitality Management,
+Opatija, 2019, pp. 431-440.
+
+A. G. Assaf and M. G. Tsionas, "Forecasting occupancy rate with Bayesian
+compression methods," (in English), Annals of Tourism Research, Article vol.
+75, pp. 439-449, Mar 2019.
+
+M. Xiang, "Research on Quality Evaluation of Online Reservation Hotel APP
+Based on a RBF Neural Network and Support Vector Machine," (in English),
+Int. J. Inf Syst. Serv. Sect., Article vol. 12, no. 2, pp. 50-64, Apr-Jun 2020.
+Y. M. Chang, C. H. Chen, J. P. Lai, Y. L. Lin, and P. F. Pai, "Forecasting
+Hotel Room Occupancy Using Long Short-Term Memory Networks with
+Sentiment Analysis and Scores of Customer Online Reviews," (in English),
+Appl. Sci.-Basel, Article vol. 11, no. 21, p. 14, Nov 2021, Art no. 10291.
+
+A. J. Sanchez-Medina and E. C-Sanchez, "Using machine learning and big
+data for efficient forecasting of hotel booking cancellations," (in English),
+International Journal of Hospitality Management, Article vol. 89, p. 9, Aug
+2020, Art no. 102546.
+
+N. Antonio, A. de Almeida, and I. Nunes, "Hotel booking demand datasets,"
+Data in Brief, vol. 22, pp. 41-49, 2019/02/01/ 2019.
+
+A. L. Samuel, "Some studies in machine learning using the game of checkers,"
+IBM Journal of Research and Development, vol. 44, no. 1.2, pp. 206-226,
+2000.
+
+V. Nasteski, "An overview of the supervised machine learning methods,"
+Horizons, vol. 4, pp. 51-62, 2017.
+NOU WN =
+
+Xe]
+
+[18]
+
+[19]
+
+[20]
+
+[21]
+
+[22]
+
+[23]
+
+[24]
+
+[25]
+
+[26]
+
+[27]
+
+[28]
+
+[29]
+
+[30]
+[31]
+
+[32]
+
+[33]
+
+Submitted to Expert Systems
+
+16
+
+A. Niculescu-Mizil and R. Caruana, "Predicting good probabilities with
+supervised learning," in Proceedings of the 22nd international conference on
+Machine learning, 2005, pp. 625-632.
+
+P. Dayan, M. Sahani, and G. Deback, "Unsupervised learning," The MIT
+encyclopedia of the cognitive sciences, pp. 857-859, 1999.
+
+R. Caruana and A. Niculescu-Mizil, "An empirical comparison of supervised
+learning algorithms," in Proceedings of the 23rd international conference on
+Machine learning, 2006, pp. 161-168.
+
+T. Hofmann, "Unsupervised Learning by Probabilistic Latent Semantic
+Analysis," Machine Learning, vol. 42, no. 1, pp. 177-196, 2001/01/01 2001.
+O. I. Abiodun ef al., "Comprehensive Review of Artificial Neural Network
+Applications to Pattern Recognition," IFEE Access, vol. 7, pp. 158820-
+158846, 2019.
+
+M. W. Gardner and S. R. Dorling, "Artificial neural networks (the multilayer
+perceptron)—a review of applications in the atmospheric sciences,"
+Atmospheric Environment, vol. 32, no. 14, pp. 2627-2636, 1998/08/01/ 1998.
+J. Singh and R. Banerjee, "A Study on Single and Multi-layer Perceptron
+Neural Network," in 2019 3rd International Conference on Computing
+Methodologies and Communication (ICCMC), 2019, pp. 35-40.
+
+X. Li and C. A. Micchelli, "Approximation by radial bases and neural
+networks," Numerical Algorithms, vol. 25, no. 1, pp. 241-262, 2000/09/01
+2000.
+
+P. C. Sen, M. Hajra, and M. Ghosh, "Supervised Classification Algorithms in
+Machine Learning: A Survey and Review," in Emerging Technology in
+Modelling and Graphics, Singapore, 2020: Springer Singapore, pp. 99-111.
+S. Tangirala, "Evaluating the impact of GINI index and information gain on
+classification using decision tree classifier algorithm," International Journal
+of Advanced Computer Science and Applications, vol. 11, no. 2, pp. 612-619,
+2020.
+
+A. Parmar, R. Katariya, and V. Patel, "A Review on Random Forest: An
+Ensemble Classifier," in International Conférence on Intelligent Data
+Communication Technologies and Internet of Things (ICICI) 2018, Cham,
+2019: Springer International Publishing, pp. 758-763.
+
+Y. Zhang ef al., "Research and Application of AdaBoost Algorithm Based on
+SVM," in 2019 IEEE 8th Joint International Information Technology and
+Artificial Intelligence Conference (ITAIC), 2019, pp. 662-666.
+
+T. Chen et al., "Xgboost: extreme gradient boosting," R package version 0.4-
+2, vol. 1, no. 4, pp. 1-4, 2015.
+
+X. Rui and D. Wunsch, "Survey of clustering algorithms," IEEE Transactions
+on Neural Networks, vol. 16, no. 3, pp. 645-678, 2005.
+
+M. Ahmed, R. Seraj, and S. M. S. Islam, "The k-means algorithm: A
+comprehensive survey and performance evaluation," Electronics, vol. 9, no.
+8, p. 1295, 2020.
+
+J.-O. Palacio-Nifio and F. Berzal, "Evaluation metrics for unsupervised
+learning algorithms," arXiv preprint arXiv: 1905.05667, 2019.
+
+Page 16 of 17
+Page 17 of 17
+
+NOU WN =
+
+Xe]
+
+[34]
+
+[35]
+
+[36]
+
+[37]
+
+Submitted to Expert Systems
+
+17
+
+D.-T. Dinh, T. Fujinami, and V.-N. Huynh, "Estimating the Optimal Number
+of Clusters in Categorical Data Clustering by Silhouette Coefficient," in
+Knowledge and Systems Sciences, Singapore, 2019: Springer Singapore, pp.
+1-17.
+
+D. L. Davies and D. W. Bouldin, "A cluster separation measure," (in eng),
+IEEE transactions on pattern analysis and machine intelligence, vol. 1, no. 2,
+pp. 224-7, Feb 1979.
+
+M. A. Syakur, B. K. Khotimah, E. M. S. Rochman, and B. D. Satoto,
+"Integration K-Means Clustering Method and Elbow Method For
+Identification of The Best Customer Profile Cluster," IOP Conference Series:
+Materials Science and Engineering, vol. 336, no. 1, p. 012017, 2018/04/01
+2018.
+
+D. Berrar, "Cross-Validation," ed, 2019.
